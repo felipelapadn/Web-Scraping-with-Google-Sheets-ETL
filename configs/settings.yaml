@@ -1,0 +1,3 @@
+google_sheets:
+  sheet_id: "sua_planilha_id"
+  worksheet: "dados_limpinhos"
