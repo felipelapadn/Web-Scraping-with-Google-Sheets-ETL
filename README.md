@@ -36,7 +36,11 @@ etl_books/
 
 * **Transformação**:
 
-  * Em andamento.
+  * Tranformação de colunas textuais em números.
+      * Coluna de price: remoção do símbolo.
+      * Coluna de estoque: separação do dado `In stock (22 available)` em duas colunas, uma para a existência do estoque (bool) e outra com a quantidade.
+  * Exclusão das colunas com valores constantes.
+  * Padronização do nome das colunas.
 
 * **Load**:
 
