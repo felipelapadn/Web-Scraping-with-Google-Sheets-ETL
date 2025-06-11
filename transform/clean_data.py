@@ -24,25 +24,25 @@ class TransformData:
         return colunas_constantes
 
     def processar(self):
+        
         self.df.rating = self.df.rating.map(self.map_rating)
 
-        colunas_constantes = self.ncontrar_colunas_constantes(self.df)
+        if self.df[self.df.price_com_taxa == self.df.price_sem_taxa].shape[0] == self.df.shape[0]:
+            self.df["price_gbp"] = self.df.price_com_taxa
+            self.df.drop(["price_com_taxa", "price_sem_taxa"], axis=1, inplace=True)
 
-        df_tratado = self.df.drop(columns=colunas_constantes)
+        self.df['price_gbp'] = self.df['price_gbp'].replace('[£]', '', regex=True).astype(float)
+        self.df['available_stock'] = self.df['estoque'].str.extract(r'(\d+)').astype(int)
+        self.df['stock'] = self.df['estoque'].str.contains('In stock')
 
-        if df_tratado[df_tratado.price_com_taxa == df_tratado.price_sem_taxa].shape[0] == df_tratado.shape[0]:
-            df_tratado["price_gbp"] = df_tratado.price_com_taxa
-            df_tratado.drop(["price_com_taxa", "price_sem_taxa"], axis=1, inplace=True)
+        self.df.drop(["estoque"], axis=1, inplace=True)
 
-        df_tratado['price_gbp'] = df_tratado['price_gbp'].replace('[£]', '', regex=True).astype(float)
-        df_tratado['available_stock'] = df_tratado['estoque'].str.extract(r'(\d+)').astype(int)
-        df_tratado['stock'] = df_tratado['estoque'].str.contains('In stock')
-
-        df_tratado.drop(["estoque"], axis=1, inplace=True)
-
-        df_tratado = df_tratado.rename(columns=self.dict_rename)
-
-        colunas = ['name', 'rating', 'book_genre', 'price_gbp', 'available_stock', 'stock', 'image']
-        df_tratado = df_tratado[colunas]
+        self.df = self.df.rename(columns=self.dict_rename)
         
-        return df_tratado
+        colunas_constantes = self.encontrar_colunas_constantes()
+
+        self.df = self.df.drop(columns=colunas_constantes)
+        
+        self.df.to_csv("data/processed_dataset.csv", index=False)
+
+        return self.df

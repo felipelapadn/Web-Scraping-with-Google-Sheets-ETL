@@ -9,8 +9,7 @@ Este projeto realiza um pipeline **ETL (Extract, Transform, Load)** para coletar
 ```bash
 etl_books/
 │
-├── config/                 # Configurações e credenciais
-│   └── settings.yaml
+├── data/                 # Arquivos raw e processado
 │
 ├── extract/                # Scripts de extração (web scraping)
 │   └── scraper.py
@@ -44,9 +43,11 @@ etl_books/
 
 * **Load**:
 
-  * Em andamento.
+  * Carrega as credenciais da API do google sheets.
+  * Atualiza a planilha com os dados tratados.
 
 ## Tecnologias Utilizadas - até o momento
 
 * `requests`, `BeautifulSoup` – Web scraping
 * `pandas` – Transformação de dados
+* `google`, `google_auth_oauthlib`, `googleapiclient` – Conexção com o Google Cloud.
