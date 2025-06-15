@@ -6,11 +6,10 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 import logging
 from dotenv import load_dotenv
-from tqdm import tqdm
 import os
 load_dotenv()
 
-logging.basicConfig(filename='example.log', level=logging.INFO,
+logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s - %(levelname)s - %(message)s')
     
 class Planilha:

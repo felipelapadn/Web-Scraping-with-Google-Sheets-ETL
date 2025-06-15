@@ -1,3 +1,8 @@
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 class TransformData:
     
     def __init__(self, df):
@@ -15,6 +20,8 @@ class TransformData:
             "nome": "name",
             "imagem": "image"
         }
+        
+        self.logger = logging.getLogger(__name__)
 
     def encontrar_colunas_constantes(self):
         colunas_constantes = []
@@ -44,5 +51,7 @@ class TransformData:
         self.df = self.df.drop(columns=colunas_constantes)
         
         self.df.to_csv("data/processed_dataset.csv", index=False)
+        
+        self.logger.info("Dataset processado.")
 
         return self.df

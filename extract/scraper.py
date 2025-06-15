@@ -4,7 +4,7 @@ import pandas as pd
 import logging
 from tqdm import tqdm
 
-logging.basicConfig(filename='example.log', level=logging.DEBUG,
+logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
