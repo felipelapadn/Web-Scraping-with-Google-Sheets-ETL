@@ -2,6 +2,9 @@
 
 Este projeto realiza um pipeline **ETL (Extract, Transform, Load)** para coletar informações de livros no site [Books to Scrape](https://books.toscrape.com), transformá-las e carregá-las em uma planilha do Google Sheets.
 
+![image](https://github.com/user-attachments/assets/e7f3bf2f-9e2a-4d8c-9851-c8a9fa638c46)
+
+
 ## Estrutura do Projeto
 
 ```bash
