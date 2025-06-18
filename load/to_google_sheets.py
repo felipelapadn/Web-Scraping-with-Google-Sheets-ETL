@@ -42,9 +42,6 @@ class Planilha:
         else:
             self.logger.info("Credenciais carregadas!")
             return sheet
-    
-    def detectar_valores_para_add(self):
-        pass
 
     def atualizar_planilha(self, sheet, valores_para_add):
         try:
